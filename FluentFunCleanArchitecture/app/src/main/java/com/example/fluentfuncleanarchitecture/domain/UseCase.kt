@@ -5,21 +5,8 @@
 
 package com.example.fluentfuncleanarchitecture.domain
 
-import com.example.fluentfuncleanarchitecture.data.DataRepository
+import com.example.fluentfuncleanarchitecture.data.ObjectRepository
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-
-class UseCase @Inject constructor(private val repository: Repository) {
-    suspend infix fun fetches(useCase: UseCaseType<Repository, Result>): Result {
-        return repository.useCase()
-    }
-
-    suspend infix fun prepares(useCase: FlowUseCaseType<Repository, Result>): Flow<Result> {
-        return repository.useCase()
-    }
-
-}
 
 /**
  * Use this when you want to quickly check the behavior.
@@ -29,8 +16,7 @@ private suspend fun main() {
     delay(2000)
     log("2 seconds")
     delay(2000)
-
-    allResultWhenComposed(DataRepository())
+    allResultWhenComposed(ObjectRepository)
 }
 
 /**

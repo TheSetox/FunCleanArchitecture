@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.fluentfuncleanarchitecture.domain.Error
 import com.example.fluentfuncleanarchitecture.domain.Result
 import com.example.fluentfuncleanarchitecture.domain.Success
-import com.example.fluentfuncleanarchitecture.domain.UseCase
 import com.example.fluentfuncleanarchitecture.domain.allResultWhenComposed
 import com.example.fluentfuncleanarchitecture.domain.resultFlow
 import com.example.fluentfuncleanarchitecture.domain.sampleResult

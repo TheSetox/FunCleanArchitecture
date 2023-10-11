@@ -23,10 +23,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         launchStateCollector()
-        viewModel.apply {
-            loadResult()
-            loadFlowResult()
-        }
+        viewModel.load()
+    }
+
+    private fun MainViewModel.load() {
+        loadResult()
+        loadFlowResult()
     }
 
     private val showLogs = { state: String -> Log.d("MainActivity", "onCreate: state is $state") }

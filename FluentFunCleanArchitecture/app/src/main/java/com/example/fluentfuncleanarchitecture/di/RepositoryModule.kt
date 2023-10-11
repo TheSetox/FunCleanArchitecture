@@ -5,18 +5,17 @@
 
 package com.example.fluentfuncleanarchitecture.di
 
-import com.example.fluentfuncleanarchitecture.data.DataRepository
+import com.example.fluentfuncleanarchitecture.data.ObjectRepository
 import com.example.fluentfuncleanarchitecture.domain.Repository
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class RepositoryModule {
-    @Binds
-    abstract fun bindDataRepository(
-        dataRepository: DataRepository
-    ): Repository
+object RepositoryModule {
+
+    @Provides
+    fun bindDataRepository(): Repository = ObjectRepository
 }
