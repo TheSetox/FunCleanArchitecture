@@ -23,6 +23,15 @@ jobs:
     - name: Grant execute permission for gradlew
       working-directory: ./FluentFunCleanArchitecture
       run: chmod +x gradlew
+      
     - name: Build with Gradle
       working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew build
+
+    - name: Lint Checking
+      working-directory: ./FluentFunCleanArchitecture
+      run: ./gradlew lint
+
+    - name: Run test
+      working-directory: ./FluentFunCleanArchitecture
+      run: ./gradlew test
