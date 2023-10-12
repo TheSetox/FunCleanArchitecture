@@ -1,4 +1,4 @@
-name: Build Check
+name: Basic Build and Test checking
 
 on:
   push:
@@ -7,8 +7,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
 
+  build:
+    name: Setup
     runs-on: ubuntu-latest
 
     steps:
@@ -23,15 +24,35 @@ jobs:
     - name: Grant execute permission for gradlew
       working-directory: ./FluentFunCleanArchitecture
       run: chmod +x gradlew
-      
-    - name: Build with Gradle
-      working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew build
+    
 
-    - name: Lint Checking
-      working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew lint
+  check:
+    needs: build
+    name: Check
+    runs-on: ubuntu-latest
 
-    - name: Run test
+    steps:
+    - name: Gradle Check
+      working-directory: ./FluentFunCleanArchitecture
+      run: ./gradlew check
+
+
+  test:
+    needs: build
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Gradle Check
       working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew test
+
+  assemble:
+      needs: test
+      name: Assemble
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Gradle Check
+          working-directory: ./FluentFunCleanArchitecture
+          run: ./gradlew assemble
