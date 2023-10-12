@@ -25,6 +25,10 @@ jobs:
       working-directory: ./FluentFunCleanArchitecture
       run: chmod +x ./gradlew
 
+    - name: Gradle Check
+      working-directory: ./FluentFunCleanArchitecture
+      run: ./gradlew check
+
   check:
     needs: build
     name: Check
