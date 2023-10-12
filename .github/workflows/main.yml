@@ -8,8 +8,8 @@ on:
 
 jobs:
 
-  build:
-    name: Setup
+  check:
+    name: Check
     runs-on: ubuntu-latest
 
     steps:
@@ -20,28 +20,27 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: gradle
-
-
-  check:
-    needs: build
-    name: Check
-    runs-on: ubuntu-latest
-
-    steps:
+    
     - name: Grant execute permission for gradlew
       working-directory: ./FluentFunCleanArchitecture
       run: chmod +x ./gradlew
     
     - name: Gradle Check
       working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew check
+      run: ./gradlew lint
 
   test:
-    needs: build
     name: Test
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle    
     - name: Grant execute permission for gradlew
       working-directory: ./FluentFunCleanArchitecture
       run: chmod +x ./gradlew
@@ -51,11 +50,18 @@ jobs:
       run: ./gradlew test
 
   assemble:
-    needs: test
+    needs: [check, test]
     name: Assemble
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
     - name: Grant execute permission for gradlew
       working-directory: ./FluentFunCleanArchitecture
       run: chmod +x ./gradlew
