@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: Gradle Check
-      working-directory: FluentFunCleanArchitecture
+      working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew check
 
   test:
@@ -46,7 +46,7 @@ jobs:
 
     steps:
     - name: Gradle Test
-      working-directory: FluentFunCleanArchitecture
+      working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew test
 
   assemble:
@@ -56,5 +56,5 @@ jobs:
 
     steps:
     - name: Gradle Assemble
-      working-directory: FluentFunCleanArchitecture
+      working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew assemble
