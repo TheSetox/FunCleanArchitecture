@@ -32,7 +32,7 @@ jobs:
 
     steps:
     - name: Gradle Check
-      working-directory: FunCleanArchitecture/FluentFunCleanArchitecture
+      working-directory: FluentFunCleanArchitecture
       run: ./gradlew check
 
   test:
@@ -42,7 +42,7 @@ jobs:
 
     steps:
     - name: Gradle Test
-      working-directory: FunCleanArchitecture/FluentFunCleanArchitecture
+      working-directory: FluentFunCleanArchitecture
       run: ./gradlew test
 
   assemble:
@@ -52,5 +52,5 @@ jobs:
 
     steps:
     - name: Gradle Assemble
-      working-directory: FunCleanArchitecture/FluentFunCleanArchitecture
+      working-directory: FluentFunCleanArchitecture
       run: ./gradlew assemble
