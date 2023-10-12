@@ -2,9 +2,11 @@ name: Basic Build and Test checking
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
 
@@ -13,18 +15,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
 
     - name: Grant execute permission for gradlew
-      working-directory: ./FluentFunCleanArchitecture
-      run: chmod +x gradlew
-    
+      run: chmod +x FunCleanArchitecture/FluentFunCleanArchitecture/gradlew
 
   check:
     needs: build
@@ -33,9 +33,8 @@ jobs:
 
     steps:
     - name: Gradle Check
-      working-directory: ./FluentFunCleanArchitecture
+      working-directory: FunCleanArchitecture/FluentFunCleanArchitecture
       run: ./gradlew check
-
 
   test:
     needs: build
@@ -43,16 +42,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Gradle Check
-      working-directory: ./FluentFunCleanArchitecture
+    - name: Gradle Test
+      working-directory: FunCleanArchitecture/FluentFunCleanArchitecture
       run: ./gradlew test
 
   assemble:
-      needs: test
-      name: Assemble
-      runs-on: ubuntu-latest
+    needs: test
+    name: Assemble
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Gradle Check
-          working-directory: ./FluentFunCleanArchitecture
-          run: ./gradlew assemble
+    steps:
+    - name: Gradle Assemble
+      working-directory: FunCleanArchitecture/FluentFunCleanArchitecture
+      run: ./gradlew assemble
