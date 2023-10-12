@@ -21,13 +21,6 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Grant execute permission for gradlew
-      working-directory: ./FluentFunCleanArchitecture
-      run: chmod +x ./gradlew
-
-    - name: Gradle Check
-      working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew check
 
   check:
     needs: build
@@ -35,6 +28,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Grant execute permission for gradlew
+      working-directory: ./FluentFunCleanArchitecture
+      run: chmod +x ./gradlew
+    
     - name: Gradle Check
       working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew check
@@ -45,6 +42,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Grant execute permission for gradlew
+      working-directory: ./FluentFunCleanArchitecture
+      run: chmod +x ./gradlew
+      
     - name: Gradle Test
       working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew test
@@ -55,6 +56,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Grant execute permission for gradlew
+      working-directory: ./FluentFunCleanArchitecture
+      run: chmod +x ./gradlew
+      
     - name: Gradle Assemble
       working-directory: ./FluentFunCleanArchitecture
       run: ./gradlew assemble
