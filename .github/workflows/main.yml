@@ -1,4 +1,4 @@
-name: Build Check
+name: Basic Build and Test checking
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
   build:
 
+    name: Build and Assemble
     runs-on: ubuntu-latest
 
     steps:
@@ -26,12 +27,33 @@ jobs:
       
     - name: Build with Gradle
       working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew build
+      run: 
+        ./gradlew build
+        ./gradlew assemble
 
-    - name: Lint Checking
-      working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew lint
+  check:
+    name: Check and Test
+    runs-on: ubuntu-latest
 
-    - name: Run test
+    steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
       working-directory: ./FluentFunCleanArchitecture
-      run: ./gradlew test
+      run: chmod +x gradlew
+      
+    - name: Gradle Check
+      working-directory: ./FluentFunCleanArchitecture
+      run: 
+        ./gradlew check
+
+    - name: Gradle Test
+      working-directory: ./FluentFunCleanArchitecture
+      run: 
+        ./gradlew test
